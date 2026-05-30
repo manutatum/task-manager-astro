@@ -1,0 +1,19 @@
+---
+import { UserButton } from '@clerk/astro/components';
+
+import Dropdown from './Dropdown.astro';
+---
+
+<header>
+  <nav class="navbar bg-base-300 shadow-sm" aria-label="Main navigation">
+    <div class="navbar-start">
+      <Dropdown />
+    </div>
+    <div class="navbar-center">
+      <a href="/app" class="btn btn-ghost text-xl md:text-2xl">Task Manager</a>
+    </div>
+    <div class="navbar-end px-4">
+      <UserButton />
+    </div>
+  </nav>
+</header>

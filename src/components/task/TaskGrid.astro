@@ -1,0 +1,24 @@
+---
+import { type Task } from "../../../prisma/generated/client";
+
+import { GET } from "../../pages/api/tasks";
+import TaskCard from "./TaskCard.astro";
+
+const response = await GET(Astro);
+
+const tasks: Task[] = await response.json();
+---
+
+{
+  tasks.length > 0 ? (
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {
+        tasks.map((task) => (
+          <TaskCard task={task} />
+        ))
+      }
+    </div>
+  ) : (
+    <p class="text-gray-500 mt-4">No tienes tareas asignadas.</p>
+  )
+}

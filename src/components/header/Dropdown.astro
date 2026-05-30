@@ -1,0 +1,29 @@
+---
+import DropdownButton from "./DropdownButton.astro";
+
+interface MenuEntry {
+  label: string;
+  href: string;
+}
+
+const menuEntries: MenuEntry[] = [
+  { label: "Inicio", href: "/" },
+  { label: "Mis Tareas", href: "/app/tasks" }
+];
+---
+
+<div class="dropdown">
+  <DropdownButton />
+  <ul
+    tabindex="-1"
+    class="menu menu-md lg:menu-lg dropdown-content bg-base-300 rounded-box z-1 mt-3 md:mt-5 w-52 p-2 shadow"
+  >
+    {
+      menuEntries.map( entry => (
+        <li>
+          <a href={entry.href}>{entry.label}</a>
+        </li>
+      ))
+    }
+  </ul>
+</div>

@@ -1,0 +1,39 @@
+---
+import { TaskStatus, type Task } from "../../../prisma/generated/client";
+
+import ArchivedIcon from "../icons/ArchivedIcon.astro";
+import TrashIcon from "../icons/TrashIcon.astro";
+
+interface Props {
+    task: Task;
+}
+
+const { task } = Astro.props;
+
+const statusColorMap: Record<TaskStatus, string> = {
+  [TaskStatus.TODO]: "badge-warning",
+  [TaskStatus.IN_PROGRESS]: "badge-info",
+  [TaskStatus.DONE]: "badge-success",
+};
+---
+
+<div class="card bg-base-300 w-80 md:w-96 shadow-md">
+  <div class="card-body">
+    <span class={"badge badge-xs " + statusColorMap[task.status]}>
+      {task.status}
+    </span>
+
+    <h2 class="card-title">{task.title}</h2>
+
+    <p>{task.description}</p>
+
+    <div class="card-actions justify-end">
+      <button class="btn btn-circle btn-error">
+        <TrashIcon class="w-5 h-5 text-base-content" />
+      </button>
+      <button class="btn btn-circle btn-info">
+        <ArchivedIcon class="w-5 h-5 text-base-content" />
+      </button>
+    </div>
+  </div>
+</div>
